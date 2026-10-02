@@ -33,7 +33,7 @@ export default function Navbar() {
             </div>
 
             {open && (
-                <div className="md:hidden w-full flex flex-col gap-1 pb-2">
+                <div className="md:hidden w-full flex flex-col gap-1 pb-2 menu-open">
                     {user ? (
                         <>
                             <NavLink to="/memories" onClick={close} className={tab}>Memories</NavLink>
