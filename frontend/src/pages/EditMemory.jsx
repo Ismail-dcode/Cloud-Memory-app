@@ -14,6 +14,7 @@ export default function EditMemory() {
     const [photos, setPhotos] = useState([]);
     const [previews, setPreviews] = useState([]);
     const [deletingPhoto, setDeletingPhoto] = useState(null);
+    const [removingPhoto, setRemovingPhoto] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -65,11 +66,11 @@ export default function EditMemory() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm font-semibold text-[#555]">Where were you?</label>
-                        <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={place} onChange={(e) => setPlace(e.target.value)} required />
+                        <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={place} onChange={(e) => setPlace(e.target.value)} />
                     </div>
                     <div>
                         <label className="text-sm font-semibold text-[#555]">When?</label>
-                        <input type="date" className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} required />
+                        <input type="date" className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} />
                     </div>
                 </div>
 
@@ -114,14 +115,17 @@ export default function EditMemory() {
                     title="Remove photo?"
                     message="This photo will be removed from the memory and deleted from storage."
                     confirmText="Remove"
+                    loading={removingPhoto}
                     onCancel={() => setDeletingPhoto(null)}
                     onConfirm={async () => {
+                        setRemovingPhoto(true);
                         try {
                             const updated = await api.deletePhoto(id, deletingPhoto.key);
                             setExistingPhotos(updated.photos || []);
                         } catch (err) {
                             setError(err.message);
                         } finally {
+                            setRemovingPhoto(false);
                             setDeletingPhoto(null);
                         }
                     }}

@@ -9,6 +9,7 @@ export default function MemoryDetails() {
     const { id } = useParams();
     const [memory, setMemory] = useState(null);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [deleting, setDeleting] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -18,11 +19,14 @@ export default function MemoryDetails() {
     // Loading placeholder handled below
 
     async function handleDelete() {
+        setDeleting(true);
         try {
             await api.deleteMemory(id);
             navigate("/memories");
         } catch (err) {
             setError(err.message);
+            setDeleting(false);
+            setShowConfirm(false);
         }
     }
 
@@ -53,6 +57,7 @@ export default function MemoryDetails() {
                 <ConfirmModal
                     title="Delete memory?"
                     message="This will remove the memory and its photos permanently. This action cannot be undone."
+                    loading={deleting}
                     onConfirm={handleDelete}
                     onCancel={() => setShowConfirm(false)}
                 />

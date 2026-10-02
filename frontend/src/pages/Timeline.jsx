@@ -12,12 +12,13 @@ export default function Timeline() {
         api.listMemories().then(setMemories).catch((e) => setError(e.message)).finally(() => setLoading(false));
     }, []);
 
-    const sorted = [...memories].sort((a, b) => b.date.localeCompare(a.date));
+    const sorted = [...memories].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
     const groups = {};
     sorted.forEach((m) => {
         const d = new Date(m.date);
-        const year = String(d.getFullYear());
-        const month = d.toLocaleString("default", { month: "long" }).toUpperCase();
+        const valid = !isNaN(d.getTime());
+        const year = valid ? String(d.getFullYear()) : "No Date";
+        const month = valid ? d.toLocaleString("default", { month: "long" }).toUpperCase() : "UNDATED";
         groups[year] = groups[year] || {};
         groups[year][month] = groups[year][month] || [];
         groups[year][month].push(m);

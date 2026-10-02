@@ -60,11 +60,11 @@ export default function CreateMemory() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm font-semibold text-[#555]">Where were you?</label>
-                        <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="City, place" value={place} onChange={(e) => setPlace(e.target.value)} required />
+                        <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="City, place" value={place} onChange={(e) => setPlace(e.target.value)} />
                     </div>
                     <div>
                         <label className="text-sm font-semibold text-[#555]">When?</label>
-                        <input type="date" className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} required />
+                        <input type="date" className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} />
                     </div>
                 </div>
                 <div>

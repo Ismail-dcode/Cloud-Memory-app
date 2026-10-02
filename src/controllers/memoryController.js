@@ -21,8 +21,8 @@ async function create(req, res) {
         const { title, thought, place, date } = req.body || {};
         const files = req.files || [];
 
-        if (!title || !thought || !place || !date) {
-            return res.status(400).json({ error: "Title, thought, place, and date are required" });
+        if (!title || !thought) {
+            return res.status(400).json({ error: "Title and thoughts are required" });
         }
 
         if (files.length > MAX_PHOTOS) {
@@ -54,8 +54,8 @@ async function create(req, res) {
             memoryId,
             title,
             thought,
-            place,
-            date,
+            place: place || "",
+            date: date || "",
             photos: photoKeys,
             createdAt: now,
             updatedAt: now
