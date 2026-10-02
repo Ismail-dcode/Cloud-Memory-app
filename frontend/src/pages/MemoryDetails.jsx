@@ -3,10 +3,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../services/api";
 import { ArrowLeft, Pencil, Trash2, MapPin, CalendarDays } from "lucide-react";
 import Loader from "../components/Loader.jsx";
+import ConfirmModal from "../components/ConfirmModal.jsx";
 
 export default function MemoryDetails() {
     const { id } = useParams();
     const [memory, setMemory] = useState(null);
+    const [showConfirm, setShowConfirm] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -16,7 +18,6 @@ export default function MemoryDetails() {
     // Loading placeholder handled below
 
     async function handleDelete() {
-        if (!window.confirm("Delete this memory? Its photos will also be removed.")) return;
         try {
             await api.deleteMemory(id);
             navigate("/memories");
@@ -45,8 +46,17 @@ export default function MemoryDetails() {
 
             <div className="flex gap-3 mt-10">
                 <Link to={`/memories/${id}/edit`} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2f5d43] text-white text-sm font-semibold"><Pencil size={16} /> Edit</Link>
-                <button onClick={handleDelete} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-red-200 text-red-700 text-sm font-semibold"><Trash2 size={16} /> Delete</button>
+                <button onClick={() => setShowConfirm(true)} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-red-200 text-red-700 text-sm font-semibold"><Trash2 size={16} /> Delete</button>
             </div>
+
+            {showConfirm && (
+                <ConfirmModal
+                    title="Delete memory?"
+                    message="This will remove the memory and its photos permanently. This action cannot be undone."
+                    onConfirm={handleDelete}
+                    onCancel={() => setShowConfirm(false)}
+                />
+            )}
         </div>
     );
 }

@@ -69,4 +69,18 @@ async function deleteMemory(userId, memoryId) {
     return memory;
 }
 
-module.exports = { createMemory, listMemories, getMemory, updateMemory, deleteMemory };
+async function removePhoto(userId, memoryId, photoKey) {
+    const memory = await getMemory(userId, memoryId);
+
+    if (!memory) {
+        return null;
+    }
+
+    const photos = (memory.photos || []).filter((k) => k !== photoKey);
+
+    const updated = await updateMemory(userId, memoryId, { photos });
+
+    return updated;
+}
+
+module.exports = { createMemory, listMemories, getMemory, updateMemory, deleteMemory, removePhoto };

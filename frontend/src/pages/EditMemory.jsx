@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "../services/api";
 import { ArrowLeft, ImagePlus } from "lucide-react";
+import ConfirmModal from "../components/ConfirmModal.jsx";
 
 export default function EditMemory() {
     const { id } = useParams();
@@ -12,6 +13,7 @@ export default function EditMemory() {
     const [existingPhotos, setExistingPhotos] = useState([]);
     const [photos, setPhotos] = useState([]);
     const [previews, setPreviews] = useState([]);
+    const [deletingPhoto, setDeletingPhoto] = useState(null);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -74,7 +76,19 @@ export default function EditMemory() {
                 <div>
                     <label className="text-sm font-semibold text-[#555]">Existing photos</label>
                     <div className="flex gap-3 mt-2 flex-wrap">
-                        {existingPhotos.map((p) => <img key={p.key} src={p.url} alt="existing" className="w-20 h-20 object-cover rounded-xl" />)}
+                        {existingPhotos.map((p) => (
+                            <div key={p.key} className="relative">
+                                <img src={p.url} alt="existing" className="w-20 h-20 object-cover rounded-xl" />
+                                <button
+                                    type="button"
+                                    onClick={() => setDeletingPhoto(p)}
+                                    className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold"
+                                    aria-label="Remove photo"
+                                >
+                                    ×
+                                </button>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -94,6 +108,25 @@ export default function EditMemory() {
 
                 <button className="self-center px-10 py-3.5 rounded-full bg-[#2f5d43] text-white font-semibold">Save Changes</button>
             </form>
+
+            {deletingPhoto && (
+                <ConfirmModal
+                    title="Remove photo?"
+                    message="This photo will be removed from the memory and deleted from storage."
+                    confirmText="Remove"
+                    onCancel={() => setDeletingPhoto(null)}
+                    onConfirm={async () => {
+                        try {
+                            const updated = await api.deletePhoto(id, deletingPhoto.key);
+                            setExistingPhotos(updated.photos || []);
+                        } catch (err) {
+                            setError(err.message);
+                        } finally {
+                            setDeletingPhoto(null);
+                        }
+                    }}
+                />
+            )}
         </div>
     );
 }

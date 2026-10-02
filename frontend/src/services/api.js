@@ -44,4 +44,5 @@ export const api = {
     createMemory: (formData) => request("/memories", { method: "POST", body: formData }),
     updateMemory: (id, formData) => request(`/memories/${id}`, { method: "PUT", body: formData }),
     deleteMemory: (id) => request(`/memories/${id}`, { method: "DELETE" }),
+    deletePhoto: (id, key) => request(`/memories/${id}/photos`, { method: "DELETE", body: JSON.stringify({ key }) }),
 };

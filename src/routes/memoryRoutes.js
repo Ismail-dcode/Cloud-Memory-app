@@ -18,5 +18,6 @@ router.get("/", memoryController.list);
 router.get("/:id", memoryController.getOne);
 router.put("/:id", upload.array("photos", 5), memoryController.update);
 router.delete("/:id", memoryController.remove);
+router.delete("/:id/photos", memoryController.removePhoto);
 
 module.exports = router;

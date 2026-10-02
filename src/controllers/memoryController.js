@@ -167,4 +167,38 @@ async function remove(req, res) {
     }
 }
 
-module.exports = { create, list, getOne, update, remove };
+async function removePhoto(req, res) {
+    try {
+        const { key } = req.body || {};
+
+        if (!key) {
+            return res.status(400).json({ error: "Photo key is required" });
+        }
+
+        const memory = await memoryService.getMemory(req.userId, req.params.id);
+
+        if (!memory) {
+            return res.status(404).json({ error: "Memory not found" });
+        }
+
+        if (!(memory.photos || []).includes(key)) {
+            return res.status(404).json({ error: "Photo not found in this memory" });
+        }
+
+        try {
+            await deleteFromS3(key);
+        } catch (err) {
+            console.error(`Failed to delete ${key} from S3:`, err.message);
+        }
+
+        const updated = await memoryService.removePhoto(req.userId, req.params.id, key);
+
+        res.json(await withPhotoUrls(updated));
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to remove photo" });
+    }
+}
+
+module.exports = { create, list, getOne, update, remove, removePhoto };
