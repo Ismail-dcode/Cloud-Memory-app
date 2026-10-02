@@ -23,8 +23,8 @@ export default function Login() {
 
     return (
         <div className="grid md:grid-cols-2 min-h-[calc(100vh-73px)]">
-            <div className="flex flex-col justify-center px-8 md:px-20 py-12">
-                <h1 className="font-serif text-4xl mb-2">Welcome back</h1>
+            <div className="flex flex-col justify-center px-8 md:px-6 md:px-20 py-12">
+                <h1 className="font-serif text-3xl md:text-3xl md:text-4xl mb-2">Welcome back</h1>
                 <p className="text-[#8a8578] mb-10">Your memories are waiting for you.</p>
                 {error && <p className="text-red-700 bg-red-50 rounded-xl px-4 py-3 mb-6 text-sm">{error}</p>}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm">

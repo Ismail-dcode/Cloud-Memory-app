@@ -22,8 +22,8 @@ export default function Timeline() {
     });
 
     return (
-        <div className="max-w-3xl mx-auto px-6 py-12">
-            <h1 className="font-serif text-4xl">Timeline</h1>
+        <div className="max-w-3xl mx-auto px-4 md:px-6 py-10">
+            <h1 className="font-serif text-3xl md:text-4xl">Timeline</h1>
             <p className="text-[#8a8578] mt-1">Leaf back through your days.</p>
             {error && <p className="mt-6 text-red-700 bg-red-50 rounded-xl px-4 py-3">{error}</p>}
             {sorted.length === 0 && !error && <p className="mt-10 text-[#8a8578]">No memories yet.</p>}

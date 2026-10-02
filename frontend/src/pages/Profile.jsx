@@ -29,8 +29,8 @@ export default function Profile() {
     }
 
     return (
-        <div className="max-w-xl mx-auto px-6 py-16 flex flex-col items-center text-center">
-            <div className="w-20 h-20 rounded-full bg-[#e3efe6] text-[#2f5d43] font-serif text-4xl flex items-center justify-center">
+        <div className="max-w-xl mx-auto px-6 py-10 md:py-16 flex flex-col items-center text-center">
+            <div className="w-20 h-20 rounded-full bg-[#e3efe6] text-[#2f5d43] font-serif text-3xl md:text-4xl flex items-center justify-center">
                 {user.name?.[0]?.toUpperCase()}
             </div>
             <h1 className="font-serif text-3xl mt-4">{user.name}</h1>
@@ -51,7 +51,7 @@ export default function Profile() {
 
             {error && <p className="mt-4 text-red-700 bg-red-50 rounded-xl px-4 py-3">{error}</p>}
 
-            <div className="bg-white border border-[#efe9dd] rounded-2xl flex gap-12 px-12 py-5 mt-8">
+            <div className="bg-white border border-[#efe9dd] rounded-2xl flex gap-8 px-8 md:gap-12 md:px-12 py-5 mt-8">
                 <div><p className="font-serif text-3xl">{memories.length}</p><p className="text-[10px] tracking-[0.2em] text-[#8a8578]">MEMORIES</p></div>
                 <div><p className="font-serif text-3xl">{places.size}</p><p className="text-[10px] tracking-[0.2em] text-[#8a8578]">PLACES</p></div>
             </div>

@@ -27,10 +27,10 @@ export default function Memories() {
     const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
 
     return (
-        <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
             <div className="flex justify-between items-end flex-wrap gap-4">
                 <div>
-                    <h1 className="font-serif text-4xl">{greeting}, {user.name}.</h1>
+                    <h1 className="font-serif text-3xl md:text-4xl">{greeting}, {user.name}.</h1>
                     <p className="text-[#8a8578] mt-1">Your memories, collected in one place.</p>
                 </div>
                 <Link to="/memories/new" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2f5d43] text-white font-semibold">

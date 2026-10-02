@@ -23,13 +23,13 @@ export default function MemoryDetails() {
         }
     }
 
-    if (error) return <p className="max-w-3xl mx-auto px-6 py-12 text-red-700">{error}</p>;
-    if (!memory) return <p className="max-w-3xl mx-auto px-6 py-12">Loading...</p>;
+    if (error) return <p className="max-w-3xl mx-auto px-4 md:px-6 py-10 text-red-700">{error}</p>;
+    if (!memory) return <p className="max-w-3xl mx-auto px-4 md:px-6 py-10">Loading...</p>;
 
     return (
-        <div className="max-w-3xl mx-auto px-6 py-12">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 py-10">
             <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
-            <h1 className="font-serif text-4xl">{memory.title}</h1>
+            <h1 className="font-serif text-3xl md:text-4xl">{memory.title}</h1>
             <p className="text-[#8a8578] mt-2 flex gap-5 text-sm">
                 <span className="inline-flex items-center gap-1.5"><CalendarDays size={15} />{memory.date}</span>
                 <span className="inline-flex items-center gap-1.5"><MapPin size={15} />{memory.place}</span>

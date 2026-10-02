@@ -14,9 +14,9 @@ export default function Home() {
 
     return (
         <div>
-            <section className="text-center px-6 pt-24 pb-20">
+            <section className="text-center px-6 pt-14 pb-12 md:pt-24 md:pb-20">
                 <p className="text-xs tracking-[0.3em] text-[#2f5d43] font-semibold mb-6">YOUR MOMENTS. YOUR THOUGHTS. YOUR MEMORIES.</p>
-                <h1 className="font-serif text-5xl md:text-6xl leading-tight">
+                <h1 className="font-serif text-3xl md:text-4xl md:text-6xl leading-tight">
                     Keep the moments <em className="text-[#2f5d43] italic">that<br />matter.</em>
                 </h1>
                 <p className="max-w-xl mx-auto text-[#7a7466] mt-6 leading-relaxed">
@@ -31,9 +31,9 @@ export default function Home() {
             <section className="px-6 pb-16">
                 <div className="flex gap-8 justify-center items-center flex-wrap">
                     {[
-                        { title: "Weekend in the Vineyards", place: "Nashik", date: "18 Aug 2026", rotate: "-rotate-3", img: "/images/Weekend in the Vineyards.jpg" },
+                        { title: "Weekend in the Vineyards", place: "Nashik", date: "18 Aug 2026", rotate: "sm:-rotate-3", img: "/images/Weekend in the Vineyards.jpg" },
                         { title: "My First College Trip", place: "Pune", date: "20 September 2026", rotate: "", img: "/images/collage-trip.jpg" },
-                        { title: "Birthday Night", place: "Mumbai", date: "12 Sept 2026", rotate: "rotate-3", img: "/images/birthday.jpg" },
+                        { title: "Birthday Night", place: "Mumbai", date: "12 Sept 2026", rotate: "sm:rotate-3", img: "/images/birthday.jpg" },
                     ].map((m, i) => (
                         <div key={i} className={`bg-white rounded-3xl p-3 border border-[#efe9dd] shadow-lg w-64 ${m.rotate}`}>
                             <img src={m.img} alt={m.title} className="h-64 w-full object-cover rounded-2xl" />

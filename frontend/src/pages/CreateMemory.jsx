@@ -41,9 +41,9 @@ export default function CreateMemory() {
     }
 
     return (
-        <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className="max-w-2xl mx-auto px-4 md:px-6 py-10">
             <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
-            <h1 className="font-serif text-4xl">Create a new memory</h1>
+            <h1 className="font-serif text-3xl md:text-4xl">Create a new memory</h1>
             <p className="text-[#8a8578] mt-1 mb-10">Capture the moment before it fades.</p>
 
             {error && <p className="text-red-700 bg-red-50 rounded-xl px-4 py-3 mb-6">{error}</p>}
@@ -57,7 +57,7 @@ export default function CreateMemory() {
                     <label className="text-sm font-semibold text-[#555]">What happened?</label>
                     <textarea rows={5} className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-3xl px-5 py-4 outline-none focus:border-[#2f5d43]" placeholder="Write it down while it's still vivid..." value={thought} onChange={(e) => setThought(e.target.value)} required />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm font-semibold text-[#555]">Where were you?</label>
                         <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="City, place" value={place} onChange={(e) => setPlace(e.target.value)} required />

@@ -32,8 +32,8 @@ export default function Register() {
     ];
 
     return (
-        <div className="max-w-md mx-auto px-6 py-16">
-            <h1 className="font-serif text-4xl mb-2">Start your diary</h1>
+        <div className="max-w-md mx-auto px-6 py-10 md:py-16">
+            <h1 className="font-serif text-3xl md:text-3xl md:text-4xl mb-2">Start your diary</h1>
             <p className="text-[#8a8578] mb-10">A few details and your moments have a home.</p>
             {error && <p className="text-red-700 bg-red-50 rounded-xl px-4 py-3 mb-6 text-sm">{error}</p>}
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
