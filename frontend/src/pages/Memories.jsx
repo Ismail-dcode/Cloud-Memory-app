@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 import { api } from "../services/api";
 import { useAuth } from "../services/auth.jsx";
 import { Search, MapPin, CalendarDays, Plus } from "lucide-react";
+import Loader from "../components/Loader.jsx";
 
 export default function Memories() {
     const { user } = useAuth();
     const [memories, setMemories] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [place, setPlace] = useState("All");
     const [sort, setSort] = useState("recent");
     const [error, setError] = useState("");
 
     useEffect(() => {
-        api.listMemories().then(setMemories).catch((e) => setError(e.message));
+        api.listMemories().then(setMemories).catch((e) => setError(e.message)).finally(() => setLoading(false));
     }, []);
 
     const places = useMemo(() => ["All", ...new Set(memories.map((m) => m.place).filter(Boolean))], [memories]);
@@ -56,7 +58,8 @@ export default function Memories() {
             </div>
 
             {error && <p className="mt-6 text-red-700 bg-red-50 rounded-xl px-4 py-3">{error}</p>}
-            {visible.length === 0 && !error && <p className="mt-10 text-[#8a8578]">No memories yet. Create your first one.</p>}
+            {loading && <Loader label="Loading your memories..." />}
+            {!loading && visible.length === 0 && !error && <p className="mt-10 text-[#8a8578]">No memories yet. Create your first one.</p>}
 
             <div className="grid md:grid-cols-3 gap-7 mt-10">
                 {visible.map((m) => (

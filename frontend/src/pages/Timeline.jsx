@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../services/api";
+import Loader from "../components/Loader.jsx";
 
 export default function Timeline() {
     const [memories, setMemories] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        api.listMemories().then(setMemories).catch((e) => setError(e.message));
+        api.listMemories().then(setMemories).catch((e) => setError(e.message)).finally(() => setLoading(false));
     }, []);
 
     const sorted = [...memories].sort((a, b) => b.date.localeCompare(a.date));
@@ -26,7 +28,8 @@ export default function Timeline() {
             <h1 className="font-serif text-3xl md:text-4xl">Timeline</h1>
             <p className="text-[#8a8578] mt-1">Leaf back through your days.</p>
             {error && <p className="mt-6 text-red-700 bg-red-50 rounded-xl px-4 py-3">{error}</p>}
-            {sorted.length === 0 && !error && <p className="mt-10 text-[#8a8578]">No memories yet.</p>}
+            {loading && <Loader label="Loading your timeline..." />}
+            {!loading && sorted.length === 0 && !error && <p className="mt-10 text-[#8a8578]">No memories yet.</p>}
 
             {Object.entries(groups).map(([year, months]) => (
                 <div key={year}>

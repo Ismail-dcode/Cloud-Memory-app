@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../services/api";
 import { ArrowLeft, Pencil, Trash2, MapPin, CalendarDays } from "lucide-react";
+import Loader from "../components/Loader.jsx";
 
 export default function MemoryDetails() {
     const { id } = useParams();
@@ -12,6 +13,7 @@ export default function MemoryDetails() {
     useEffect(() => {
         api.getMemory(id).then(setMemory).catch((e) => setError(e.message));
     }, [id]);
+    // Loading placeholder handled below
 
     async function handleDelete() {
         if (!window.confirm("Delete this memory? Its photos will also be removed.")) return;
@@ -24,7 +26,7 @@ export default function MemoryDetails() {
     }
 
     if (error) return <p className="max-w-3xl mx-auto px-4 md:px-6 py-10 text-red-700">{error}</p>;
-    if (!memory) return <p className="max-w-3xl mx-auto px-4 md:px-6 py-10">Loading...</p>;
+    if (!memory) return <div className="max-w-3xl mx-auto px-4 md:px-6 py-10"><Loader label="Opening your memory..." /></div>;
 
     return (
         <div className="max-w-3xl mx-auto px-4 md:px-6 py-10">

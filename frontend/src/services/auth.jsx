@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { api } from "./api";
+import Loader from "../components/Loader.jsx";
 
 const AuthContext = createContext(null);
 
@@ -40,7 +41,7 @@ export function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{ user, loading, login, logout, refreshUser }}>
-            {children}
+            {loading ? <Loader label="Opening your diary..." /> : children}
         </AuthContext.Provider>
     );
 }

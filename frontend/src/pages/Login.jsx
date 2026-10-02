@@ -7,17 +7,21 @@ export default function Login() {
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [submitting, setSubmitting] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError("");
+        setSubmitting(true);
         try {
             await login(identifier, password);
             navigate("/memories");
         } catch (err) {
             setError(err.message);
+        } finally {
+            setSubmitting(false);
         }
     }
 
@@ -38,7 +42,10 @@ export default function Login() {
                         <Lock size={18} className="text-[#8a8578]" />
                         <input className="flex-1 py-3.5 outline-none bg-transparent" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    <button className="mt-2 self-start px-10 py-3.5 rounded-full bg-[#2f5d43] text-white font-semibold">Sign In</button>
+                    <button disabled={submitting} className="mt-2 self-start px-10 py-3.5 rounded-full bg-[#2f5d43] text-white font-semibold disabled:opacity-60 inline-flex items-center gap-2">
+                        {submitting && <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-90" d="M22 12a10 10 0 00-10-10" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></svg>}
+                        {submitting ? "Signing in..." : "Sign In"}
+                    </button>
                 </form>
                 <p className="mt-6 text-sm text-[#8a8578]">Don't have an account? <Link to="/register" className="text-[#2f5d43] font-semibold">Sign up</Link></p>
             </div>
