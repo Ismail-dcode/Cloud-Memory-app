@@ -14,39 +14,44 @@ export default function Home() {
 
     return (
         <div>
-            <section className="text-center px-6 pt-14 pb-12 md:pt-24 md:pb-20">
-                <p className="text-xs tracking-[0.3em] text-[#2f5d43] font-semibold mb-6">YOUR MOMENTS. YOUR THOUGHTS. YOUR MEMORIES.</p>
-                <h1 className="font-serif text-3xl md:text-4xl md:text-6xl leading-tight">
-                    Keep the moments <em className="text-[#2f5d43] italic">that<br />matter.</em>
-                </h1>
-                <p className="max-w-xl mx-auto text-[#7a7466] mt-6 leading-relaxed">
-                    Your personal digital memory diary for photos, thoughts, places and dates.
-                </p>
-                <div className="flex gap-3 justify-center mt-8">
-                    <Link to={user ? "/memories/new" : "/register"} className="px-7 py-3.5 rounded-full bg-[#2f5d43] text-white font-semibold">Create a Memory</Link>
-                    <Link to={user ? "/memories" : "/login"} className="px-7 py-3.5 rounded-full bg-white border border-[#e5dfd2] font-semibold">Explore Memories</Link>
+            <section className="relative min-h-[calc(100vh-73px)] flex flex-col justify-center px-8 md:px-16">
+                <img src="/images/mountain.jpg" alt="Mountains at sunrise" className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+                <div className="relative z-10 max-w-xl">
+                    <h1 className="font-serif text-3xl md:text-5xl text-white leading-tight">
+                        Your moments.<br />Your memories.
+                    </h1>
+                    <p className="text-white/80 mt-4 leading-relaxed">
+                        A personal diary to capture what matters.
+                    </p>
+                    <div className="flex gap-3 flex-wrap mt-6">
+                        <Link to={user ? "/memories/new" : "/register"} className="inline-block px-7 py-3.5 rounded-full bg-[#2f5d43] text-white font-semibold">Create a Memory →</Link>
+                        <Link to={user ? "/memories" : "/login"} className="inline-block px-7 py-3.5 rounded-full bg-white/80 text-[#1c1c1c] hover:bg-white font-semibold backdrop-blur">Explore Memories</Link>
+                    </div>
                 </div>
             </section>
 
-            <section className="px-6 pb-16">
-                <div className="flex gap-8 justify-center items-center flex-wrap">
+            <section className="px-6 py-16">
+                <h2 className="font-serif text-2xl mb-8 max-w-5xl mx-auto">Recent Memories</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
                     {[
-                        { title: "Weekend in the Vineyards", place: "Nashik", date: "18 Aug 2026", rotate: "sm:-rotate-3", img: "/images/Weekend in the Vineyards.jpg" },
-                        { title: "My First College Trip", place: "Pune", date: "20 September 2026", rotate: "", img: "/images/collage-trip.jpg" },
-                        { title: "Birthday Night", place: "Mumbai", date: "12 Sept 2026", rotate: "sm:rotate-3", img: "/images/birthday.jpg" },
+                        { title: "Picnics", place: "Pune", date: "20 Sep 2026", img: "/images/picknic.jpeg" },
+                        { title: "Birthday's", place: "Mumbai", date: "12 Aug 2026", img: "/images/birthday.jpg" },
+                        { title: "Weekend's", place: "Nashik", date: "05 Jul 2026", img: "/images/Weekend in the Vineyards.jpg" },
                     ].map((m, i) => (
-                        <div key={i} className={`bg-white rounded-3xl p-3 border border-[#efe9dd] shadow-lg w-64 ${m.rotate}`}>
-                            <img src={m.img} alt={m.title} className="h-64 w-full object-cover rounded-2xl" />
-                            <div className="p-3">
-                                <h3 className="font-serif text-lg">{m.title}</h3>
-                                <p className="text-[#8a8578] text-xs mt-1">{m.place} · {m.date}</p>
+                        <div key={i} className="relative rounded-3xl overflow-hidden shadow-lg">
+                            <img src={m.img} alt={m.title} className="h-72 w-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 p-4 bg-black/30 backdrop-blur-sm">
+                                <h3 className="font-serif text-lg text-white">{m.title}</h3>
+                                <p className="text-white/80 text-xs mt-1">{m.date}</p>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
 
-            <section className="bg-white border-y border-[#efe9dd] py-20 px-6 text-center">
+            <section className="bg-white dark:bg-[#1e1a15] border-y border-[#efe9dd] dark:border-[#2a251e] py-20 px-6 text-center">
                 <h2 className="font-serif text-3xl mb-14">More than just photos</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                     {features.map(({ icon: Icon, title, text }) => (

@@ -42,39 +42,39 @@ export default function CreateMemory() {
 
     return (
         <div className="max-w-2xl mx-auto px-4 md:px-6 py-10">
-            <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
+            <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] dark:text-[#9a9486] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
             <h1 className="font-serif text-3xl md:text-4xl">Create a new memory</h1>
-            <p className="text-[#8a8578] mt-1 mb-10">Capture the moment before it fades.</p>
+            <p className="text-[#8a8578] dark:text-[#9a9486] mt-1 mb-10">Capture the moment before it fades.</p>
 
             {error && <p className="text-red-700 bg-red-50 rounded-xl px-4 py-3 mb-6">{error}</p>}
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div>
-                    <label className="text-sm font-semibold text-[#555]">Title</label>
-                    <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="A name for this moment" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                    <label className="text-sm font-semibold text-[#555] dark:text-[#b5aea0]">Title</label>
+                    <input className="mt-1.5 w-full bg-white dark:bg-[#1e1a15] border dark:border-[#3a342b] border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="A name for this moment" value={title} onChange={(e) => setTitle(e.target.value)} required />
                 </div>
                 <div>
-                    <label className="text-sm font-semibold text-[#555]">What happened?</label>
-                    <textarea rows={5} className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-3xl px-5 py-4 outline-none focus:border-[#2f5d43]" placeholder="Write it down while it's still vivid..." value={thought} onChange={(e) => setThought(e.target.value)} required />
+                    <label className="text-sm font-semibold text-[#555] dark:text-[#b5aea0]">What happened?</label>
+                    <textarea rows={5} className="mt-1.5 w-full bg-white dark:bg-[#1e1a15] border dark:border-[#3a342b] border-[#e5dfd2] rounded-3xl px-5 py-4 outline-none focus:border-[#2f5d43]" placeholder="Write it down while it's still vivid..." value={thought} onChange={(e) => setThought(e.target.value)} required />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className="text-sm font-semibold text-[#555]">Where were you?</label>
-                        <input className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="City, place" value={place} onChange={(e) => setPlace(e.target.value)} />
+                        <label className="text-sm font-semibold text-[#555] dark:text-[#b5aea0]">Where were you?</label>
+                        <input className="mt-1.5 w-full bg-white dark:bg-[#1e1a15] border dark:border-[#3a342b] border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" placeholder="City, place" value={place} onChange={(e) => setPlace(e.target.value)} />
                     </div>
                     <div>
-                        <label className="text-sm font-semibold text-[#555]">When?</label>
-                        <input type="date" className="mt-1.5 w-full bg-white border border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} />
+                        <label className="text-sm font-semibold text-[#555] dark:text-[#b5aea0]">When?</label>
+                        <input type="date" className="mt-1.5 w-full bg-white dark:bg-[#1e1a15] border dark:border-[#3a342b] border-[#e5dfd2] rounded-full px-5 py-3.5 outline-none focus:border-[#2f5d43]" value={date} onChange={(e) => setDate(e.target.value)} />
                     </div>
                 </div>
                 <div>
-                    <label className="text-sm font-semibold text-[#555]">Photos</label>
+                    <label className="text-sm font-semibold text-[#555] dark:text-[#b5aea0]">Photos</label>
                     <label className="mt-1.5 block border-2 border-dashed border-[#d8d2c4] rounded-3xl p-10 text-center cursor-pointer hover:border-[#2f5d43] transition">
-                        <div className="w-12 h-12 rounded-full bg-[#e3efe6] flex items-center justify-center mx-auto mb-3">
+                        <div className="w-12 h-12 rounded-full bg-[#e3efe6] dark:bg-[#2a3a2f] flex items-center justify-center mx-auto mb-3">
                             <ImagePlus size={22} className="text-[#2f5d43]" />
                         </div>
                         <p className="font-semibold">Add photos</p>
-                        <p className="text-[#8a8578] text-sm">Drag & drop or click to browse</p>
+                        <p className="text-[#8a8578] dark:text-[#9a9486] text-sm">Drag & drop or click to browse</p>
                         <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden" onChange={handleFiles} />
                     </label>
                     <div className="flex gap-3 mt-4 flex-wrap">

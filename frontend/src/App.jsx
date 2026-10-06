@@ -17,7 +17,7 @@ export default function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
-                <div className="min-h-screen bg-[#faf7f0] text-[#1c1c1c] font-sans flex flex-col">
+                <div className="min-h-screen bg-[#faf7f0] text-[#1c1c1c] dark:bg-[#16130f] dark:text-[#ece7dd] font-sans flex flex-col">
                     <Navbar />
                     <main className="flex-1">
                         <Routes>

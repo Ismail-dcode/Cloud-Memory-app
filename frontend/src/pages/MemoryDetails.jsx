@@ -35,9 +35,9 @@ export default function MemoryDetails() {
 
     return (
         <div className="max-w-3xl mx-auto px-4 md:px-6 py-10">
-            <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
+            <Link to="/memories" className="inline-flex items-center gap-1.5 text-[#8a8578] dark:text-[#9a9486] text-sm mb-6"><ArrowLeft size={16} /> Back to memories</Link>
             <h1 className="font-serif text-3xl md:text-4xl">{memory.title}</h1>
-            <p className="text-[#8a8578] mt-2 flex gap-5 text-sm">
+            <p className="text-[#8a8578] dark:text-[#9a9486] mt-2 flex gap-5 text-sm">
                 <span className="inline-flex items-center gap-1.5"><CalendarDays size={15} />{memory.date}</span>
                 <span className="inline-flex items-center gap-1.5"><MapPin size={15} />{memory.place}</span>
             </p>
@@ -50,7 +50,7 @@ export default function MemoryDetails() {
 
             <div className="flex gap-3 mt-10">
                 <Link to={`/memories/${id}/edit`} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2f5d43] text-white text-sm font-semibold"><Pencil size={16} /> Edit</Link>
-                <button onClick={() => setShowConfirm(true)} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-red-200 text-red-700 text-sm font-semibold"><Trash2 size={16} /> Delete</button>
+                <button onClick={() => setShowConfirm(true)} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white dark:bg-[#1e1a15] border dark:border-[#3a342b] border-red-200 text-red-700 text-sm font-semibold"><Trash2 size={16} /> Delete</button>
             </div>
 
             {showConfirm && (
