@@ -9,6 +9,8 @@
 [![AWS](https://img.shields.io/badge/AWS-Cloud%20Services-232F3E?style=flat-square&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
 [![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=flat-square&logo=render&logoColor=black)](https://render.com/)
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-2ea44f?style=flat-square&logo=googlechrome&logoColor=white)](https://memory-dairy.ismailshaikh.in/)
+
 </div>
 
 ---
