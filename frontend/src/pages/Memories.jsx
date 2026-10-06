@@ -63,17 +63,16 @@ export default function Memories() {
 
             <div className="grid md:grid-cols-3 gap-7 mt-10">
                 {visible.map((m) => (
-                    <Link key={m.memoryId} to={`/memories/${m.memoryId}`} className="relative rounded-3xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-xl transition block">
-                        {m.photos?.[0] && <img src={m.photos[0].url} alt={m.title} className="w-full h-72 object-cover" />}
-                        {!m.photos?.[0] && <div className="w-full h-72 bg-[#e3efe6] dark:bg-[#2a3a2f]" />}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                        <div className="absolute inset-x-0 bottom-0 p-4 bg-black/30 backdrop-blur-sm">
-                            <h3 className="font-serif text-xl text-white">{m.title}</h3>
-                            <p className="text-white/80 text-sm mt-1 flex gap-4">
+                    <Link key={m.memoryId} to={`/memories/${m.memoryId}`} className="relative rounded-3xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition block bg-white dark:bg-[#1e1a15] border border-[#efe9dd] dark:border-[#2a251e]">
+                        {m.photos?.[0] && <img src={m.photos[0].url} alt={m.title} className="w-full h-56 object-cover" />}
+                        {m.photos?.[0] && <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />}
+                        <div className={`${m.photos?.[0] ? "absolute bottom-0 left-0 right-0 p-4" : "p-5"}`}>
+                            <h3 className={`font-serif text-xl ${m.photos?.[0] ? "text-white inline-block px-2 py-1 rounded-lg bg-black/15 backdrop-blur-[2px]" : ""}`}>{m.title}</h3>
+                            <p className={`text-sm mt-1 flex gap-4 ${m.photos?.[0] ? "text-white/90 inline-block px-2 py-0.5 rounded-lg bg-black/15 backdrop-blur-[2px]" : "text-[#8a8578] dark:text-[#9a9486]"}`}>
                                 <span className="inline-flex items-center gap-1"><MapPin size={14} />{m.place}</span>
                                 <span className="inline-flex items-center gap-1"><CalendarDays size={14} />{m.date}</span>
                             </p>
-                            <p className="text-white/70 text-sm mt-2 line-clamp-2">{m.thought}</p>
+                            {!m.photos?.[0] && <p className="text-[#555] dark:text-[#b5aea0] text-sm mt-3 line-clamp-3">{m.thought}</p>}
                         </div>
                     </Link>
                 ))}

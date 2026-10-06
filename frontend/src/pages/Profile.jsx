@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useAuth } from "../services/auth.jsx";
 import { LogOut, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const { user, logout, refreshUser } = useAuth();
@@ -17,6 +18,7 @@ export default function Profile() {
     }, []);
 
     const places = new Set(memories.map((m) => m.place).filter(Boolean));
+    const photos = memories.flatMap((m) => (m.photos || []).map((p) => ({ ...p, memoryId: m.memoryId, title: m.title })));
 
     async function saveBio() {
         try {
@@ -61,6 +63,22 @@ export default function Profile() {
                 <div className="flex justify-between px-5 py-4 text-sm"><span className="text-[#8a8578] dark:text-[#9a9486]">Username</span><span>{user.username}</span></div>
                 <div className="flex justify-between px-5 py-4 text-sm"><span className="text-[#8a8578] dark:text-[#9a9486]">Email</span><span>{user.email}</span></div>
                 <div className="flex justify-between px-5 py-4 text-sm"><span className="text-[#8a8578] dark:text-[#9a9486]">Member since</span><span>October 2026</span></div>
+            </div>
+
+            <div className="w-full mt-10">
+                <h2 className="font-serif text-xl mb-4 text-left">Your Photos</h2>
+                {photos.length === 0 ? (
+                    <p className="text-[#8a8578] dark:text-[#9a9486] text-sm">No photos yet. Create a memory to see them here.</p>
+                ) : (
+                    <div className="grid grid-cols-3 gap-1 md:gap-2">
+                        {photos.map((p, i) => (
+                            <Link key={i} to={`/memories/${p.memoryId}`} className="relative aspect-square overflow-hidden rounded-xl group">
+                                <img src={p.url} alt={p.title || "memory"} className="w-full h-full object-cover transition group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition" />
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <button onClick={() => { logout(); navigate("/login"); }} className="mt-8 inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#e5dfd2] dark:border-[#3a342b] bg-white dark:bg-[#1e1a15] dark:text-[#ece7dd] text-sm">

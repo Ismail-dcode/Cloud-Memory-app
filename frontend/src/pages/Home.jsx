@@ -41,10 +41,10 @@ export default function Home() {
                     ].map((m, i) => (
                         <div key={i} className="relative rounded-3xl overflow-hidden shadow-lg">
                             <img src={m.img} alt={m.title} className="h-72 w-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                            <div className="absolute inset-x-0 bottom-0 p-4 bg-black/30 backdrop-blur-sm">
-                                <h3 className="font-serif text-lg text-white">{m.title}</h3>
-                                <p className="text-white/80 text-xs mt-1">{m.date}</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <div className="absolute bottom-0 left-0 p-4">
+                                <h3 className="font-serif text-lg text-white inline-block px-2 py-1 rounded-lg bg-black/15 backdrop-blur-[2px]">{m.title}</h3>
+                                <p className="text-xs mt-1 inline-block px-2 py-0.5 rounded-lg bg-black/15 backdrop-blur-[2px] text-white/90">{m.date}</p>
                             </div>
                         </div>
                     ))}

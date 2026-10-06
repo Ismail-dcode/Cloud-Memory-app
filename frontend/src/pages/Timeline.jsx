@@ -40,23 +40,13 @@ export default function Timeline() {
                             <p className="text-[11px] tracking-[0.25em] text-[#2f5d43] font-semibold mt-6 mb-4">{month}</p>
                             <div className="border-l-2 border-[#e5dfd2] ml-1 pl-6 flex flex-col gap-4">
                                 {items.map((m) => (
-                                    <Link to={`/memories/${m.memoryId}`} key={m.memoryId} className="relative rounded-2xl overflow-hidden hover:shadow-md transition block">
-                                        <span className="absolute -left-[31px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#2f5d43] z-10" />
-                                        {m.photos?.[0] ? (
-                                            <>
-                                                <img src={m.photos[0].url} alt={m.title} className="w-full h-40 object-cover" />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                                                <div className="absolute inset-x-0 bottom-0 p-4 bg-black/30 backdrop-blur-sm">
-                                                    <h3 className="font-serif text-lg text-white">{m.title}</h3>
-                                                    <p className="text-white/80 text-xs">{m.place} · {m.date}</p>
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <div className="bg-white dark:bg-[#1e1a15] border border-[#efe9dd] dark:border-[#2a251e] rounded-2xl p-4">
-                                                <h3 className="font-serif text-lg">{m.title}</h3>
-                                                <p className="text-[#8a8578] dark:text-[#9a9486] text-xs">{m.place} · {m.date}</p>
-                                            </div>
-                                        )}
+                                    <Link to={`/memories/${m.memoryId}`} key={m.memoryId} className="relative bg-white dark:bg-[#1e1a15] border border-[#efe9dd] dark:border-[#2a251e] rounded-2xl p-4 flex items-center gap-4 hover:shadow-md transition">
+                                        <span className="absolute -left-[31px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#2f5d43]" />
+                                        {m.photos?.[0] && <img src={m.photos[0].url} alt={m.title} className="w-14 h-14 rounded-xl object-cover" />}
+                                        <div>
+                                            <h3 className="font-serif text-lg">{m.title}</h3>
+                                            <p className="text-[#8a8578] dark:text-[#9a9486] text-xs">{m.place} · {m.date}</p>
+                                        </div>
                                     </Link>
                                 ))}
                             </div>
